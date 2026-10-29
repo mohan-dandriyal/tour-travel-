@@ -440,10 +440,10 @@ export default function PopularDestinations() {
                   )}
 
                   {/* Image counter */}
-                  <div className="absolute right-5 top-5 rounded-full bg-black/25 px-3 py-2 text-xs font-semibold text-white backdrop-blur-md sm:right-7 sm:top-7">
+                  {/* <div className="absolute right-5 top-5 rounded-full bg-black/25 px-3 py-2 text-xs font-semibold text-white backdrop-blur-md sm:right-7 sm:top-7">
                     {String(activeImage + 1).padStart(2, "0")} /{" "}
                     {String(images.length).padStart(2, "0")}
-                  </div>
+                  </div> */}
 
                   {/* Image details */}
                   <div className="absolute inset-x-0 bottom-0 p-5 text-white sm:p-8">
@@ -634,7 +634,7 @@ export default function PopularDestinations() {
 
                   {/* Enquiry CTA */}
                   <motion.div variants={itemVariants} className="mt-6">
-                    <PrimaryButton href="" onClick={openEnquiry}>
+                    <PrimaryButton href="" onClick={openEnquiry} disabled={false}>
                       {destination.cta}
                       <ArrowUpRight
                         size={17}

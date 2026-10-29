@@ -397,7 +397,7 @@ export default function Header() {
               />
 
               <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.96 }}>
-                <PrimaryLinkButton href={actions.contact.href}>
+                <PrimaryLinkButton className="" ariaLabel="" href={actions.contact.href} disabled={false}>
                 
 
                   <ContactIcon
@@ -508,15 +508,7 @@ export default function Header() {
           )}
         </AnimatePresence>
 
-        {/* Bottom accent stripe */}
-        {/* <motion.div
-          aria-hidden="true"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 0.4, ease: EASE }}
-          style={{ originX: 0 }}
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-[image:var(--grad-sunset)]"
-        /> */}
+    
       </motion.header>
     </MotionConfig>
   );
