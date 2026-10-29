@@ -120,7 +120,7 @@ function ServiceImage({
   }
 
   return (
-    <motion.div style={{ scale }} className="absolute inset-0">
+    <motion.div style={{ scale }} className="absolute inset-0 overflow-hidden">
       <Image
         src={src}
         alt={alt}
@@ -183,8 +183,8 @@ function ServiceCard({
         aria-labelledby={`service-${service.id}`}
         style={{ scale: stack ? stackScale : 1 }}
         className={`group relative grid origin-top overflow-hidden rounded-[2rem] border bg-white shadow-[0_30px_60px_-30px_rgba(37,45,74,0.16)] ${flip
-            ? "lg:grid-cols-[0.95fr_1.05fr]"
-            : "lg:grid-cols-[1.05fr_0.95fr]"
+          ? "lg:grid-cols-[0.95fr_1.05fr]"
+          : "lg:grid-cols-[1.05fr_0.95fr]"
           }`}
         initial={false}
         whileHover={{ borderColor: COLORS.line }}
@@ -195,7 +195,7 @@ function ServiceCard({
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.25 }}
-          className={`flex flex-col p-7 sm:p-10 lg:p-12 ${flip ? "lg:order-2" : ""
+          className={`flex flex-col p-7 sm:p-10 lg:p-8 ${flip ? "lg:order-2" : ""
             }`}
           style={{ borderColor: COLORS.line }}
         >
@@ -281,26 +281,6 @@ function ServiceCard({
               </li>
             ))}
           </motion.ul>
-
-          {/* Service CTA */}
-          <motion.div variants={rise} className="mt-8">
-            {/* <PrimaryButton href={service.cta.href ?? ""}>
-              {service.cta.label}
-
-              <span
-                className="flex h-9 w-9 items-center justify-center rounded-full transition-transform duration-300 group-hover/cta:rotate-45"
-                style={{
-                  backgroundColor: COLORS.background,
-                  color: COLORS.navy,
-                }}
-              >
-                <ArrowUpRight
-                  className="h-5 w-5"
-                  aria-hidden="true"
-                />
-              </span>
-            </PrimaryButton> */}
-          </motion.div>
         </motion.div>
 
         {/* Service photo and benefits */}
@@ -369,9 +349,10 @@ export default function Services() {
 
   return (
     <MotionConfig reducedMotion="user">
+      
       <section
         id="service"
-        className={`${sans.className} relative scroll-mt-24 overflow-x-clip py-12 sm:py-18 lg:py-20`}
+        className={`${sans.className} bg-white relative scroll-mt-24 overflow-x-clip py-12 sm:py-18 lg:py-20`}
       >
         {/* Decorative compass watermark */}
         <motion.div

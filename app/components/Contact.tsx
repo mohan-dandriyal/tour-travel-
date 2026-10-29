@@ -72,7 +72,6 @@ type FieldType =
   | "text"
   | "email"
   | "tel"
-  | "date"
   | "number"
   | "textarea";
 

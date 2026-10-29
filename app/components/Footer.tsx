@@ -1,15 +1,10 @@
-
 "use client";
 
+import type { MouseEvent, ReactElement } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowUp, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import { motion, useReducedMotion } from "framer-motion";
@@ -36,37 +31,72 @@ const contactIcons: Record<string, LucideIcon> = {
   "map-pin": MapPin,
 };
 
+/*
+ * Brand icons are inlined (24x24, stroke style) so they don't depend on the
+ * lucide-react version; newer versions removed brand icons.
+ */
+const svgProps = {
+  width: 18,
+  height: 18,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 2,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  "aria-hidden": true,
+};
+
+const socialIcons: Record<string, ReactElement> = {
+  instagram: (
+    <svg {...svgProps}>
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  ),
+  facebook: (
+    <svg {...svgProps}>
+      <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+    </svg>
+  ),
+  youtube: (
+    <svg {...svgProps}>
+      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+      <path d="m10 15 5-3-5-3z" />
+    </svg>
+  ),
+};
+
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Footer() {
   const reduceMotion = useReducedMotion();
+  const pathname = usePathname();
+
+  const scrollToTop = () =>
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+
+  // Links to "/" scroll to top when you're already on the home page.
+  const handleHomeClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === "/" && pathname === "/") {
+      event.preventDefault();
+      scrollToTop();
+    }
+  };
 
   const reveal = {
-    hidden: {
-      opacity: 0,
-      y: reduceMotion ? 0 : 22,
-    },
+    hidden: { opacity: 0, y: reduceMotion ? 0 : 22 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        duration: reduceMotion ? 0 : 0.65,
-        ease,
-      },
+      transition: { duration: reduceMotion ? 0 : 0.65, ease },
     },
   };
 
-  const mutedText = {
-    color: content.mutedTextColor,
-  };
-
-  const accentText = {
-    color: content.accentColor,
-  };
-
-  const borderStyle = {
-    borderColor: content.borderColor,
-  };
+  const mutedText = { color: content.mutedTextColor };
+  const accentText = { color: content.accentColor };
+  const borderStyle = { borderColor: content.borderColor };
 
   return (
     <footer
@@ -89,6 +119,7 @@ export default function Footer() {
             <Link
               href={content.brand.homeHref}
               aria-label={content.brand.imageAlt}
+              onClick={(event) => handleHomeClick(event, content.brand.homeHref)}
               className="group inline-flex items-center"
             >
               <Image
@@ -96,14 +127,11 @@ export default function Footer() {
                 alt={content.brand.imageAlt}
                 width={180}
                 height={64}
-                className="h-22 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-[5.5rem] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </Link>
 
-            <p
-              style={mutedText}
-              className="mt-6 max-w-sm text-sm leading-7"
-            >
+            <p style={mutedText} className="mt-6 max-w-sm text-sm leading-7">
               {content.brand.description}
             </p>
 
@@ -121,27 +149,17 @@ export default function Footer() {
                   aria-label={social.label}
                   title={social.label}
                   style={borderStyle}
-                  className="group inline-flex h-11 items-center justify-center gap-2 rounded-full border px-4 text-xs font-semibold transition-all duration-300 hover:bg-white/70"
+                  className="inline-flex h-11 min-w-11 items-center justify-center rounded-full border px-3 text-xs font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/70"
                   onMouseEnter={(event) => {
-                    event.currentTarget.style.color =
-                      content.accentColor;
-                    event.currentTarget.style.borderColor =
-                      content.accentColor;
+                    event.currentTarget.style.color = content.accentColor;
+                    event.currentTarget.style.borderColor = content.accentColor;
                   }}
                   onMouseLeave={(event) => {
-                    event.currentTarget.style.color =
-                      content.textColor;
-                    event.currentTarget.style.borderColor =
-                      content.borderColor;
+                    event.currentTarget.style.color = content.textColor;
+                    event.currentTarget.style.borderColor = content.borderColor;
                   }}
                 >
-                  {social.shortLabel}
-
-                  <ArrowUpRight
-                    size={13}
-                    aria-hidden="true"
-                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
+                  {socialIcons[social.icon] ?? social.shortLabel}
                 </a>
               ))}
             </nav>
@@ -149,16 +167,15 @@ export default function Footer() {
 
           {/* Navigation columns */}
           {content.columns.map((column, index) => (
-            <motion.div
+            <motion.nav
               key={column.id}
+              aria-label={`${content.accessibility.footerNavigationLabel}: ${column.title}`}
               className="lg:col-span-2"
               variants={reveal}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                delay: reduceMotion ? 0 : index * 0.08,
-              }}
+              transition={{ delay: reduceMotion ? 0 : index * 0.08 }}
             >
               <h3 className="mb-6 font-[family-name:var(--font-footer-heading)] text-2xl font-semibold">
                 {column.title}
@@ -170,18 +187,16 @@ export default function Footer() {
                     <Link
                       href={item.href}
                       style={mutedText}
+                      onClick={(event) => handleHomeClick(event, item.href)}
                       className="group inline-flex items-center gap-2 text-sm transition-colors duration-300 hover:opacity-100"
                       onMouseEnter={(event) => {
-                        event.currentTarget.style.color =
-                          content.accentColor;
+                        event.currentTarget.style.color = content.accentColor;
                       }}
                       onMouseLeave={(event) => {
-                        event.currentTarget.style.color =
-                          content.mutedTextColor;
+                        event.currentTarget.style.color = content.mutedTextColor;
                       }}
                     >
                       <span>{item.label}</span>
-
                       <ArrowUpRight
                         size={13}
                         aria-hidden="true"
@@ -191,7 +206,7 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </motion.nav>
           ))}
 
           {/* Contact information */}
@@ -214,10 +229,7 @@ export default function Footer() {
                 const Icon = contactIcons[item.icon];
 
                 return (
-                  <li
-                    key={item.id}
-                    className="flex items-start gap-3"
-                  >
+                  <li key={item.id} className="flex items-start gap-3">
                     {Icon && (
                       <Icon
                         size={18}
@@ -229,26 +241,16 @@ export default function Footer() {
 
                     <a
                       href={item.href}
-                      target={
-                        item.icon === "map-pin"
-                          ? "_blank"
-                          : undefined
-                      }
-                      rel={
-                        item.icon === "map-pin"
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
+                      target={item.icon === "map-pin" ? "_blank" : undefined}
+                      rel={item.icon === "map-pin" ? "noopener noreferrer" : undefined}
                       aria-label={`${item.label}: ${item.value}`}
                       style={mutedText}
                       className="break-words text-sm leading-6 transition-colors duration-300 hover:opacity-100"
                       onMouseEnter={(event) => {
-                        event.currentTarget.style.color =
-                          content.accentColor;
+                        event.currentTarget.style.color = content.accentColor;
                       }}
                       onMouseLeave={(event) => {
-                        event.currentTarget.style.color =
-                          content.mutedTextColor;
+                        event.currentTarget.style.color = content.mutedTextColor;
                       }}
                     >
                       {item.value}
@@ -257,23 +259,6 @@ export default function Footer() {
                 );
               })}
             </ul>
-
-            <Link
-              href={content.contact.cta.href}
-              style={{
-                ...accentText,
-                borderColor: content.borderColor,
-              }}
-              className="group mt-7 inline-flex items-center gap-3 border-b pb-2 text-sm font-semibold transition-colors duration-300"
-            >
-              {content.contact.cta.label}
-
-              <ArrowRight
-                size={16}
-                aria-hidden="true"
-                className="transition-transform duration-300 group-hover:translate-x-1"
-              />
-            </Link>
           </motion.div>
         </div>
 
@@ -281,29 +266,41 @@ export default function Footer() {
         <motion.div
           style={borderStyle}
           className="mt-14 border-t pt-7 sm:mt-16"
-          initial={{
-            opacity: 0,
-            y: reduceMotion ? 0 : 12,
-          }}
+          initial={{ opacity: 0, y: reduceMotion ? 0 : 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{
-            duration: reduceMotion ? 0 : 0.6,
-            ease,
-          }}
+          transition={{ duration: reduceMotion ? 0 : 0.6, ease }}
         >
           <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <p
-              style={mutedText}
-              className="text-xs leading-6"
-            >
-              {content.bottom.copyrightPrefix}{" "}
-              {content.bottom.year} {content.brand.name}.{" "}
-              {content.bottom.copyrightSuffix}{" "}
+            <p style={mutedText} className="text-xs leading-6">
+              {content.bottom.copyrightPrefix} {content.bottom.year}{" "}
+              {content.brand.name}. {content.bottom.copyrightSuffix}{" "}
               {content.bottom.tagline}
             </p>
 
-            
+            {/* Back to top: scrolls to top: 0 */}
+            <button
+              type="button"
+              onClick={scrollToTop}
+              aria-label={content.bottom.backToTopLabel}
+              style={borderStyle}
+              className="group inline-flex h-11 w-fit items-center gap-2 rounded-full border px-5 text-xs font-semibold transition-all duration-300 hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2"
+              onMouseEnter={(event) => {
+                event.currentTarget.style.color = content.accentColor;
+                event.currentTarget.style.borderColor = content.accentColor;
+              }}
+              onMouseLeave={(event) => {
+                event.currentTarget.style.color = content.textColor;
+                event.currentTarget.style.borderColor = content.borderColor;
+              }}
+            >
+              {content.bottom.backToTopLabel}
+              <ArrowUp
+                size={14}
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:-translate-y-0.5"
+              />
+            </button>
           </div>
         </motion.div>
       </div>

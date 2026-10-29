@@ -12,7 +12,6 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { Plane } from "lucide-react";
 import data from "@/app/data/hero.json";
 
 const script = Cormorant_Garamond({
@@ -31,7 +30,7 @@ const body = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const { eyebrow, heading, description, stats, slides } = data;
+const { eyebrow, heading, description,  slides } = data;
 
 const EASE = [0.22, 1, 0.36, 1];
 const AUTOPLAY_MS = 6000;
@@ -142,7 +141,6 @@ function Photo({ src, alt, sizes, priority = false }) {
   );
 }
 
-const pad = (n) => String(n).padStart(2, "0");
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -227,8 +225,8 @@ export default function Hero() {
             <AnimatePresence initial={false}>
               <motion.div
                 key={current.id}
-                initial={{ opacity: 0, scale: 1.18 }}
-                animate={{ opacity: 1, scale: 1.04 }}
+                initial={{ opacity: 0, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{
                   opacity: { duration: 1.1, ease: EASE },
@@ -275,20 +273,6 @@ export default function Hero() {
             style={{ backgroundColor: COLORS.terracotta }}
           />
 
-          {/* Animated decorative plane */}
-          <motion.div
-            aria-hidden="true"
-            initial={{ x: "-10vw" }}
-            animate={{ x: "110vw", y: [0, -18, 0, 14, 0] }}
-            transition={{
-              x: { duration: 26, ease: "linear", repeat: Infinity },
-              y: { duration: 8, ease: "easeInOut", repeat: Infinity },
-            }}
-            className="pointer-events-none absolute left-0 top-12 z-10 hidden md:block"
-            style={{ color: COLORS.cream }}
-          >
-            <Plane className="h-6 w-6 drop-shadow-lg" />
-          </motion.div>
 
           {/* Main content grid */}
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 pb-44 pt-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:px-10 lg:pb-48 lg:pt-20">
@@ -378,30 +362,6 @@ export default function Hero() {
               >
                 {description}
               </motion.p>
-
-              {/* Stats row */}
-              <motion.div
-                variants={rise}
-                className="mt-10 flex flex-wrap gap-x-9 gap-y-4 border-t pt-6"
-                style={{ borderColor: "rgba(250,249,246,0.25)" }}
-              >
-                {stats.map((s) => (
-                  <div key={s.label}>
-                    <p
-                      className={`${display.className} text-3xl font-bold leading-none`}
-                      style={{ color: COLORS.cream }}
-                    >
-                      {s.value}
-                    </p>
-                    <p
-                      className="mt-1 text-xs font-medium uppercase tracking-[0.14em]"
-                      style={{ color: "rgba(250,249,246,0.7)" }}
-                    >
-                      {s.label}
-                    </p>
-                  </div>
-                ))}
-              </motion.div>
             </motion.div>
 
             {/* Right destination thumbnail cards */}
@@ -478,25 +438,6 @@ export default function Hero() {
 
           {/* Slide counter and pagination dots */}
           <div className="absolute bottom-24 left-6 z-20 flex items-center gap-4 lg:bottom-28 lg:left-1/2 lg:-translate-x-1/2">
-            <div
-              aria-hidden="true"
-              className="flex h-5 items-center gap-2 overflow-hidden text-xs font-bold tabular-nums text-white"
-            >
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.span
-                  key={index}
-                  initial={{ y: 14, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -14, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: EASE }}
-                  className="block"
-                >
-                  {pad(index + 1)}
-                </motion.span>
-              </AnimatePresence>
-              <span className="text-white/60">/ {pad(slides.length)}</span>
-            </div>
-
             <div className="flex gap-2">
               {slides.map((s, i) => (
                 <motion.button

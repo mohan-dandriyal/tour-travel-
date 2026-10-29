@@ -15,7 +15,7 @@
       "successBg": "#F0F4EC",
       "successBorder": "#DCE5D4"
     },
-    "tagline": "Let's plan your journey",
+    "tagline": "Contact Now",
     "heading": {
       "light": "Every great journey",
       "bold": "starts with a hello."
@@ -101,36 +101,10 @@
           "width": "full",
           "autoComplete": "tel"
         },
-        {
-          "name": "destination",
-          "label": "Where would you like to go?",
-          "type": "text",
-          "placeholder": "e.g. Uttarakhand, Goa, Rajasthan",
-          "icon": "map-pin",
-          "required": true,
-          "width": "full"
-        },
-        {
-          "name": "travelDate",
-          "label": "Preferred travel date",
-          "type": "date",
-          "icon": "calendar",
-          "required": false,
-          "width": "half"
-        },
-        {
-          "name": "travelers",
-          "label": "Number of travelers",
-          "type": "number",
-          "icon": "users",
-          "min": "1",
-          "defaultValue": "2",
-          "required": true,
-          "width": "half"
-        },
+     
         {
           "name": "message",
-          "label": "Tell us a little about your plans...",
+          "label": "Message",
           "type": "textarea",
           "placeholder": "Tell us about your ideal trip, preferred activities, or any special requests...",
           "rows": 4,
@@ -138,7 +112,7 @@
           "width": "full"
         }
       ],
-      "submitLabel": "Send your enquiry",
+      "submitLabel": "Send Message",
       "submittingLabel": "Sending...",
       "submitIcon": "send",
       "errorMessage": "Something went wrong while sending your enquiry. Please try again or contact us directly.",

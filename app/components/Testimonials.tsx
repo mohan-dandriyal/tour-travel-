@@ -1,21 +1,16 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import {
   MotionConfig,
-  animate,
   motion,
-  useInView,
-  useReducedMotion,
   type Variants,
 } from "framer-motion";
-import { ArrowUpRight, MapPin, Quote, Star } from "lucide-react";
+import {  MapPin, Quote, Star } from "lucide-react";
 import data from "@/app/data/testimonials.json";
-import PrimaryButton from "./PrimaryButton";
 
 const script = Cormorant_Garamond({
   subsets: ["latin"],
@@ -33,7 +28,7 @@ const body = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const { tagline, heading, description, summary, cta, testimonials } = data;
+const { tagline, heading, description, testimonials } = data;
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -103,33 +98,6 @@ function Stars({
   );
 }
 
-/* Counts up once when scrolled into view */
-function CountUp({
-  value,
-  decimals = 1,
-}: {
-  value: number;
-  decimals?: number;
-}) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-  const reduce = useReducedMotion();
-  const [n, setN] = useState(0);
-
-  useEffect(() => {
-    if (!inView || reduce) return;
-
-    const controls = animate(0, value, {
-      duration: 1.8,
-      ease: EASE,
-      onUpdate: setN,
-    });
-
-    return () => controls.stop();
-  }, [inView, value, reduce]);
-
-  return <span ref={ref}>{(reduce ? value : n).toFixed(decimals)}</span>;
-}
 
 /* Round portrait with initials fallback */
 function Avatar({
@@ -210,9 +178,10 @@ function Postcard({
       {/* Decorative tape */}
       <span
         aria-hidden="true"
-        className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 -rotate-3 backdrop-blur-sm"
+        className="pointer-events-none absolute left-1/2 top-0 z-10 h-6 w-20 backdrop-blur-sm"
         style={{
           backgroundColor: "rgba(189,89,56,0.28)",
+          transform: `translate(-50%, -50%) rotate(${-tilt - 2}deg)`,
         }}
       />
 
@@ -363,104 +332,6 @@ export default function Testimonials() {
               >
                 {description}
               </motion.p>
-
-              {/* Rating summary */}
-              <motion.div
-                variants={rise}
-                className="mt-8 max-w-md rounded-2xl border p-6"
-                style={{
-                  borderColor: COLORS.line,
-                  backgroundColor: "#F2F0E9",
-                }}
-              >
-                <div className="flex items-center gap-5">
-                  <p
-                    className={`${display.className} text-7xl leading-none tracking-wide`}
-                    style={{ color: COLORS.navy }}
-                  >
-                    <CountUp value={summary.value} />
-                  </p>
-
-                  <div>
-                    <Stars count={5} className="h-5 w-5" />
-
-                    <p
-                      className="mt-1 text-sm"
-                      style={{ color: COLORS.muted }}
-                    >
-                      {summary.total}
-                    </p>
-                  </div>
-                </div>
-
-                <ul className="mt-5 space-y-2.5">
-                  {summary.breakdown.map((row, i) => (
-                    <li
-                      key={row.stars}
-                      className="flex items-center gap-3 text-sm"
-                    >
-                      <span
-                        className="flex w-8 items-center gap-1"
-                        style={{ color: COLORS.navy }}
-                      >
-                        {row.stars}
-                        <Star
-                          className="h-3.5 w-3.5"
-                          style={{
-                            fill: COLORS.terracotta,
-                            color: COLORS.terracotta,
-                          }}
-                          aria-hidden="true"
-                        />
-                      </span>
-
-                      <span
-                        role="img"
-                        aria-label={`${row.percent}% gave ${row.stars} stars`}
-                        className="h-2 flex-1 overflow-hidden rounded-full"
-                        style={{ backgroundColor: COLORS.line }}
-                      >
-                        <motion.span
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: row.percent / 100 }}
-                          viewport={{ once: true, amount: 0.8 }}
-                          transition={{
-                            duration: 1,
-                            ease: EASE,
-                            delay: 0.3 + i * 0.1,
-                          }}
-                          className="block h-full origin-left rounded-full"
-                          style={{ backgroundColor: COLORS.terracotta }}
-                        />
-                      </span>
-
-                      <span
-                        className="w-9 text-right"
-                        style={{ color: COLORS.muted }}
-                      >
-                        {row.percent}%
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* CTA */}
-              <motion.div variants={rise} className="mt-8">
-                <PrimaryButton href={cta.href}>
-                  {cta.label}
-
-                  <span
-                    className="flex h-9 w-9 items-center justify-center rounded-full transition-transform duration-300 group-hover:rotate-45"
-                    style={{
-                      backgroundColor: COLORS.cream,
-                      color: COLORS.terracotta,
-                    }}
-                  >
-                    <ArrowUpRight className="h-5 w-5" aria-hidden="true" />
-                  </span>
-                </PrimaryButton>
-              </motion.div>
             </motion.div>
 
             {/* Right: postcard wall */}

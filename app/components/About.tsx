@@ -12,8 +12,6 @@ import {
   type Variants,
 } from "framer-motion";
 import {
-  ArrowUpRight,
-  CheckCircle2,
   Compass,
   Headset,
   MapPin,
@@ -219,13 +217,6 @@ function FeatureRow({
           >
             {feature.title}
           </h3>
-
-          <span
-            className="text-xs font-bold tracking-[0.15em]"
-            style={{ color: COLORS.accent }}
-          >
-            {String(index + 1).padStart(2, "0")}
-          </span>
         </div>
 
         <p
@@ -235,14 +226,6 @@ function FeatureRow({
           {feature.description}
         </p>
       </div>
-
-      <CheckCircle2
-        size={21}
-        className="mt-1"
-        style={{ color: COLORS.olive }}
-        strokeWidth={2}
-        aria-hidden="true"
-      />
     </motion.li>
   );
 }

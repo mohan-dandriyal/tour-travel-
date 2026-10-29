@@ -1,4 +1,3 @@
-
 {
   "footer": {
     "backgroundColor": "#F8F5F0",
@@ -28,15 +27,13 @@
         "id": "plan",
         "title": "Plan your trip",
         "links": [
-          { "label": "Travel Packages", "href": "#packages" },
           { "label": "Testimonials", "href": "#testimonials" },
-          { "label": "Contact Us", "href": "#contact" },
-          { "label": "FAQs", "href": "#faq" }
+          { "label": "Contact Us", "href": "#contact" }
         ]
       }
     ],
     "contact": {
-      "title": "Let's connect",
+      "title": "Let’s connect",
       "items": [
         {
           "id": "email",
@@ -59,37 +56,19 @@
           "href": "https://maps.google.com/?q=Noida,Uttar+Pradesh,India",
           "icon": "map-pin"
         }
-      ],
-      "cta": {
-        "label": "Let's plan your journey",
-        "href": "#contact"
-      }
+      ]
     },
     "socials": [
-      {
-        "id": "instagram",
-        "label": "Instagram",
-        "href": "https://instagram.com/",
-        "shortLabel": "IG"
-      },
-      {
-        "id": "facebook",
-        "label": "Facebook",
-        "href": "https://facebook.com/",
-        "shortLabel": "FB"
-      },
-      {
-        "id": "youtube",
-        "label": "YouTube",
-        "href": "https://youtube.com/",
-        "shortLabel": "YT"
-      }
+      { "id": "instagram", "label": "Instagram", "href": "https://instagram.com/", "shortLabel": "IG", "icon": "instagram" },
+      { "id": "facebook", "label": "Facebook", "href": "https://facebook.com/", "shortLabel": "FB", "icon": "facebook" },
+      { "id": "youtube", "label": "YouTube", "href": "https://youtube.com/", "shortLabel": "YT", "icon": "youtube" }
     ],
     "bottom": {
       "year": "2026",
       "copyrightPrefix": "©",
       "copyrightSuffix": "All rights reserved.",
-      "tagline": "Made for the journeys that matter."
+      "tagline": "Made for the journeys that matter.",
+      "backToTopLabel": "Back to top"
     },
     "accessibility": {
       "socialLinksLabel": "Follow us on social media",

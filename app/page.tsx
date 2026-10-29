@@ -18,11 +18,11 @@ export default function Home() {
         <Hero />
       </div>
 
-       <div>
+      <div>
         <About />
       </div>
 
-         <div>
+      <div>
         <Service />
       </div>
 
@@ -30,7 +30,7 @@ export default function Home() {
         <PopularDestinations />
       </div>
 
-      <div>
+      <div className="bg-white">
         <WhyChooseUs />
       </div>
 
@@ -38,11 +38,11 @@ export default function Home() {
         <Testimonials />
       </div>
 
-       <div>
+      <div className="bg-white">
         <ContactSection />
       </div>
 
-      <div>
+      <div >
         <Footer />
       </div>
 

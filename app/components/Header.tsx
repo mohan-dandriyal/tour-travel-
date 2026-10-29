@@ -22,7 +22,7 @@ import {
 } from "lucide-react";
 
 import data from "@/app/data/header.json";
-import PrimaryButton from "./PrimaryButton";
+import { PrimaryLinkButton } from "./PrimaryButton";
 
 const { logo, nav, actions } = data;
 
@@ -397,11 +397,8 @@ export default function Header() {
               />
 
               <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.96 }}>
-                <PrimaryButton href={actions.contact.href}>
-                  <span
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/4 -skew-x-12 bg-white/40 transition-transform duration-700 ease-out group-hover:translate-x-[700%]"
-                  />
+                <PrimaryLinkButton href={actions.contact.href}>
+                
 
                   <ContactIcon
                     className="relative h-4 w-4 transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110"
@@ -409,7 +406,7 @@ export default function Header() {
                   />
 
                   <span className="relative">{actions.contact.label}</span>
-                </PrimaryButton>
+                </PrimaryLinkButton>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -512,14 +509,14 @@ export default function Header() {
         </AnimatePresence>
 
         {/* Bottom accent stripe */}
-        <motion.div
+        {/* <motion.div
           aria-hidden="true"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.2, delay: 0.4, ease: EASE }}
           style={{ originX: 0 }}
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-[3px] bg-[image:var(--grad-sunset)]"
-        />
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] bg-[image:var(--grad-sunset)]"
+        /> */}
       </motion.header>
     </MotionConfig>
   );

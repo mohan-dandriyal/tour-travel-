@@ -27,19 +27,19 @@
     {
       "id": 1,
       "title": "Emerald Bay",
-      "image": "/slide-1.jpg",
+      "image": "/slide-1.webp",
       "alt": "Green cliffs rising above a calm turquoise bay"
     },
     {
       "id": 3,
       "title": "Coastal Roads",
-      "image": "/slide-3.jpg",
+      "image": "/slide-2.webp",
       "alt": "Coastline seen from above with winding roads"
     },
     {
       "id": 4,
       "title": "Island Headland",
-      "image": "/slide-4.jpg",
+      "image": "/slide-3.webp",
       "alt": "Tropical headland meeting the open sea"
     }
   ]

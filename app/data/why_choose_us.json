@@ -1,6 +1,6 @@
-
 {
-  "tagline": "Travel with confidence",
+  "sectionId": "why-choose-us",
+  "tagline": "Why Choose",
   "heading": {
     "light": "More than a trip,",
     "accent": "a better way to travel."
@@ -8,24 +8,24 @@
   "description": "We make every journey feel effortless with thoughtful planning, trusted local expertise, and experiences designed around you.",
   "image": "/why-choose-us.jpg",
   "imageAlt": "Travelers exploring a beautiful mountain destination",
+  "imageCard": {
+    "icon": "compass",
+    "eyebrow": "Your journey",
+    "title": "Made personal"
+  },
   "badge": {
     "value": "10+",
     "label": "Years of travel expertise"
   },
-  "stats": [
-    {
-      "value": "2,500+",
-      "label": "Happy travelers"
-    },
-    {
-      "value": "150+",
-      "label": "Curated experiences"
-    },
-    {
-      "value": "98%",
-      "label": "Traveler satisfaction"
-    }
-  ],
+  "caption": {
+    "eyebrow": "Every journey has a story",
+    "heading": "Let’s make yours unforgettable.",
+    "note": "Thoughtfully planned. Beautifully experienced."
+  },
+  "featuresIntro": {
+    "eyebrow": "The difference is in the details",
+    "heading": "More than a trip. A better way to explore."
+  },
   "features": [
     {
       "id": "personalized",
@@ -56,8 +56,23 @@
       "description": "Get friendly assistance before your journey, during your trip, and whenever plans change."
     }
   ],
-  "cta": {
-    "label": "Plan your next journey",
-    "href": "#tour-packages"
-  }
+  "trustNote": {
+    "icon": "headset",
+    "title": "We’re with you at every step.",
+    "description": "From the first plan to the final destination, we make travelling feel effortless."
+  },
+  "stats": [
+    {
+      "value": "2,500+",
+      "label": "Happy travelers"
+    },
+    {
+      "value": "150+",
+      "label": "Curated experiences"
+    },
+    {
+      "value": "98%",
+      "label": "Traveler satisfaction"
+    }
+  ]
 }
