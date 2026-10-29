@@ -1,0 +1,39 @@
+
+{
+  "theme": {
+    "background": "#f8f7f3",
+    "primary": "#252d4a",
+    "accent": "#b75b38",
+    "text": "#686b73",
+    "decoration": "#e8e3d7"
+  },
+  "brand": {
+    "name": "Your Travel Brand",
+    "icon": "compass",
+    "logo": "",
+    "showLogo": true,
+    "showLocationIcon": true
+  },
+  "content": {
+    "eyebrow": "YOUR JOURNEY BEGINS HERE",
+    "heading": "Discover somewhere",
+    "accentHeading": "extraordinary.",
+    "description": "Preparing your next unforgettable adventure...",
+    "loadingText": "Finding your way",
+    "footer": "TRAVEL BEYOND THE ORDINARY"
+  },
+  "animation": {
+    "enabled": true,
+    "duration": 0.7,
+    "routeDuration": 2.5,
+    "loaderDuration": 2,
+    "showTravelRoute": true,
+    "showLoadingBar": true,
+    "showFooter": true
+  },
+  "layout": {
+    "maxWidth": "448px",
+    "logoSize": 96,
+    "loadingBarWidth": 208
+  }
+}

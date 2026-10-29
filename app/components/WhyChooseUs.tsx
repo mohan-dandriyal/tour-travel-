@@ -190,9 +190,6 @@ export default function WhyChooseUs() {
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#b75b38]">
                 {data.featuresIntro.eyebrow}
               </p>
-              <h3 className="mt-3 max-w-md text-2xl font-medium leading-snug tracking-tight text-[#252d4a] sm:text-3xl">
-                {data.featuresIntro.heading}
-              </h3>
             </motion.div>
 
             <div className="grid gap-4 sm:grid-cols-2">

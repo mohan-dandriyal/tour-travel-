@@ -548,7 +548,7 @@ export default function PopularDestinations() {
 
                   {/* CTA opens the enquiry popup */}
                   <motion.div variants={itemVariants} className="mt-6">
-                    <PrimaryButton onClick={openEnquiry}>
+                    <PrimaryButton href={destination.href} onClick={openEnquiry}>
                       {destination.cta}
                       <ArrowUpRight
                         size={17}
