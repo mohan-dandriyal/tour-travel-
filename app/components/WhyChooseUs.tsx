@@ -1,9 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  CheckCircle2,
+  ChevronDown,
   Compass,
   Headset,
   MapPin,
@@ -60,6 +61,14 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function WhyChooseUs() {
   const reduceMotion = useReducedMotion();
 
+  // The first item is open by default. Clicking the open item closes it.
+  const [openId, setOpenId] = useState<string | null>(
+    featuresWithIcons[0]?.id ?? null
+  );
+
+  const toggle = (id: string) =>
+    setOpenId((current) => (current === id ? null : id));
+
   const fadeUp = {
     hidden: { opacity: 0, y: reduceMotion ? 0 : 24 },
     visible: {
@@ -79,7 +88,7 @@ export default function WhyChooseUs() {
   return (
     <section
       id={data.sectionId}
-      className="relative overflow-hidden py-12 sm:py-18 lg:py-20"
+      className="relative overflow-hidden py-12 sm:py-[4.5rem] lg:py-20"
     >
       {/* Background decoration */}
       <div
@@ -119,7 +128,7 @@ export default function WhyChooseUs() {
           </motion.div>
         </motion.div>
 
-        {/* Image and features */}
+        {/* Image and FAQ */}
         <div className="grid gap-10 lg:grid-cols-[1fr_0.95fr] lg:gap-14">
           {/* Image panel */}
           <motion.div
@@ -143,7 +152,9 @@ export default function WhyChooseUs() {
               {/* Top badge */}
               <div className="absolute left-5 top-5 flex items-center gap-3 rounded-2xl border border-white/40 bg-white/90 px-4 py-3 shadow-lg backdrop-blur-xl sm:left-7 sm:top-7 sm:px-5">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#f3e8df] text-[#b75b38]">
-                  {ImageCardIcon && <ImageCardIcon size={20} strokeWidth={1.6} />}
+                  {ImageCardIcon && (
+                    <ImageCardIcon size={20} strokeWidth={1.6} />
+                  )}
                 </div>
                 <div>
                   <p className="text-[10px] font-bold uppercase tracking-[0.17em] text-[#777982]">
@@ -154,7 +165,6 @@ export default function WhyChooseUs() {
                   </p>
                 </div>
               </div>
-
 
               {/* Caption */}
               <div className="absolute inset-x-0 bottom-0 p-6 text-white sm:p-9 lg:p-10">
@@ -175,10 +185,9 @@ export default function WhyChooseUs() {
                 </div>
               </div>
             </div>
-
           </motion.div>
 
-          {/* Features */}
+          {/* FAQ-style features */}
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -192,40 +201,85 @@ export default function WhyChooseUs() {
               </p>
             </motion.div>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {featuresWithIcons.map((feature) => (
-                  <motion.article
+            <div className="space-y-3">
+              {featuresWithIcons.map((feature) => {
+                const isOpen = openId === feature.id;
+                const panelId = `feature-panel-${feature.id}`;
+                const buttonId = `feature-button-${feature.id}`;
+
+                return (
+                  <motion.div
                     key={feature.id}
                     variants={fadeUp}
-                    className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-3xl border border-[#252d4a]/[0.08] bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#b75b38]/30 hover:shadow-[0_18px_50px_rgba(37,45,74,0.08)] sm:p-6"
+                    className={`overflow-hidden rounded-2xl border bg-white transition-all duration-300 ${
+                      isOpen
+                        ? "border-[#b75b38]/40 shadow-[0_18px_50px_rgba(37,45,74,0.08)]"
+                        : "border-[#252d4a]/[0.08] hover:border-[#b75b38]/30"
+                    }`}
                   >
-                    <div className="mb-6 flex items-start justify-between">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#f4eee7] text-[#b75b38] transition-colors duration-300 group-hover:bg-[#252d4a] group-hover:text-white">
-                        {feature.Icon && <feature.Icon size={22} strokeWidth={1.6} />}
-                      </div>
+                    <h4>
+                      <button
+                        type="button"
+                        id={buttonId}
+                        onClick={() => toggle(feature.id)}
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                        className="flex w-full items-center gap-4 p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#b75b38] sm:p-5"
+                      >
+                        <span
+                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-colors duration-300 ${
+                            isOpen
+                              ? "bg-[#252d4a] text-white"
+                              : "bg-[#f4eee7] text-[#b75b38]"
+                          }`}
+                        >
+                          {feature.Icon && (
+                            <feature.Icon size={22} strokeWidth={1.6} />
+                          )}
+                        </span>
 
-                      <span className="font-serif text-sm italic text-[#b75b38]/80">
-                        {feature.number}
-                      </span>
-                    </div>
+                        <span className="min-w-0 flex-1">
+                          <span className="block text-base font-semibold tracking-tight text-[#252d4a] sm:text-lg">
+                            {feature.title}
+                          </span>
+                        </span>
 
-                    <h4 className="text-lg font-semibold tracking-tight text-[#252d4a]">
-                      {feature.title}
+                        <ChevronDown
+                          size={20}
+                          aria-hidden="true"
+                          className={`shrink-0 text-[#252d4a] transition-transform duration-300 ${
+                            isOpen ? "rotate-180 text-[#b75b38]" : ""
+                          }`}
+                        />
+                      </button>
                     </h4>
 
-                    <p className="mt-3 text-sm leading-6 text-[#777982]">
-                      {feature.description}
-                    </p>
-
-                    <CheckCircle2
-                      size={17}
-                      aria-hidden="true"
-                      className="absolute bottom-5 right-5 text-[#b75b38]/0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#b75b38] sm:bottom-6 sm:right-6"
-                    />
-                  </motion.article>
-              ))}
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          key="panel"
+                          id={panelId}
+                          role="region"
+                          aria-labelledby={buttonId}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{
+                            duration: reduceMotion ? 0 : 0.35,
+                            ease,
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <p className="px-4 pb-5 pl-[4.5rem] pr-6 text-sm leading-7 text-[#686b73] sm:px-5 sm:pb-6 sm:pl-[5.25rem]">
+                            {feature.description}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
             </div>
-
           </motion.div>
         </div>
 

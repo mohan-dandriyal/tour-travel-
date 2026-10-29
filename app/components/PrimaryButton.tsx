@@ -10,6 +10,8 @@ interface PrimaryButtonProps {
   className?: string;
   ariaLabel?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled: boolean,
+  type?: "button" | "submit" | "reset";
 }
 
 const FOCUS_RING =
@@ -52,9 +54,13 @@ function PrimaryButton({
   onClick,
   className = "",
   ariaLabel,
+  disabled,
+  type="button"
 }: PrimaryButtonProps) {
   return (
     <button
+      type={type}
+      disabled={disabled}
       onClick={onClick}
       aria-label={ariaLabel}
       className={`group relative inline-flex items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-full border-2 border-white bg-[linear-gradient(135deg,#026ada_0%,#0a5bd6_45%,#1ec8ff_100%)] px-5 py-3.5 text-sm font-semibold tracking-[0.01em] text-white shadow-md transition-all duration-300 hover:opacity-95 hover:shadow-lg active:scale-[0.98] ${FOCUS_RING} ${className}`}
@@ -79,4 +85,4 @@ function PrimaryButton({
 }
 
 
-export { PrimaryButton, PrimaryLinkButton}
+export { PrimaryButton, PrimaryLinkButton }

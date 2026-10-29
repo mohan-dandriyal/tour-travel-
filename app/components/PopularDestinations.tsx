@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useCallback, useState } from "react";
@@ -14,8 +15,8 @@ import {
   Landmark,
   MapPin,
   Mountain,
-  Trees,
   Waves,
+  Trees,
 } from "lucide-react";
 
 import destinationsData from "@/app/data/popularDestinations.json";
@@ -45,7 +46,10 @@ type Destination = {
 
 type PopularDestinationsData = {
   tagline: string;
-  heading: { light: string; bold: string };
+  heading: {
+    light: string;
+    bold: string;
+  };
   description: string[];
   badge: string;
   labels: {
@@ -58,7 +62,10 @@ type PopularDestinationsData = {
     destinationCounter: string;
     selectorTitle: string;
   };
-  button: { label: string; href: string };
+  button: {
+    label: string;
+    href: string;
+  };
   destinations: Destination[];
 };
 
@@ -71,7 +78,7 @@ const iconMap = {
   trees: Trees,
   compass: Compass,
   heart: Heart,
-};
+} as const;
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -83,83 +90,104 @@ const formatPrice = (price: number, currency: string) =>
   }).format(price);
 
 export default function PopularDestinations() {
-  const [activeDestination, setActiveDestination] = useState(0);
-  const [activeImage, setActiveImage] = useState(0);
-  const [activeCategory, setActiveCategory] = useState("All");
-  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
-
   const reduceMotion = useReducedMotion();
 
-  // Hooks must stay above the early return below.
-  const openEnquiry = useCallback(() => setIsEnquiryOpen(true), []);
-  const closeEnquiry = useCallback(() => setIsEnquiryOpen(false), []);
+  const destinations = data.destinations ?? [];
 
-  const destination = data.destinations[activeDestination];
+  const [activeCategory, setActiveCategory] = useState(
+    () => destinations[0]?.category ?? ""
+  );
 
-  if (!destination) return null;
+  const [activeDestination, setActiveDestination] = useState(() => {
+    const initialCategory = destinations[0]?.category;
+    const initialIndex = destinations.findIndex(
+      (item) => item.category === initialCategory
+    );
 
-  const images = destination.images ?? [];
-  const currentImage = images[activeImage] ?? images[0];
+    return initialIndex >= 0 ? initialIndex : 0;
+  });
 
-  const DestinationIcon =
-    iconMap[destination.icon as keyof typeof iconMap] ?? Compass;
+  const [activeImage, setActiveImage] = useState(0);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
-  // "All" is added here so the filter button exists.
+  const openEnquiry = useCallback(() => {
+    setIsEnquiryOpen(true);
+  }, []);
+
+  const closeEnquiry = useCallback(() => {
+    setIsEnquiryOpen(false);
+  }, []);
+
+  const destination = destinations[activeDestination];
+
   const categories = [
-    "All",
-    ...new Set(data.destinations.map((item) => item.category)),
+    ...new Set(destinations.map((item) => item.category)),
   ];
 
-  const filteredDestinations =
-    activeCategory === "All"
-      ? data.destinations
-      : data.destinations.filter((item) => item.category === activeCategory);
+  const filteredDestinations = destinations.filter(
+    (item) => item.category === activeCategory
+  );
+
+  const images = destination?.images ?? [];
+  const currentImage = images[activeImage] ?? images[0];
+
+  const DestinationIcon = destination
+    ? iconMap[destination.icon as keyof typeof iconMap] ?? Compass
+    : Compass;
 
   const goToDestination = (index: number) => {
-    const total = data.destinations.length;
-    if (!total) return;
+    if (index < 0 || index >= destinations.length) return;
 
-    setActiveDestination((index + total) % total);
+    setActiveDestination(index);
     setActiveImage(0);
   };
 
   const goToImage = (index: number) => {
     if (!images.length) return;
+
     setActiveImage((index + images.length) % images.length);
   };
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
 
-    const nextDestination =
-      category === "All"
-        ? data.destinations[0]
-        : data.destinations.find((item) => item.category === category);
+    const nextIndex = destinations.findIndex(
+      (item) => item.category === category
+    );
 
-    if (nextDestination) {
-      const nextIndex = data.destinations.findIndex(
-        (item) => item.id === nextDestination.id
-      );
-      if (nextIndex !== -1) goToDestination(nextIndex);
+    if (nextIndex !== -1) {
+      setActiveDestination(nextIndex);
+      setActiveImage(0);
     }
   };
 
   const imageVariants = {
-    initial: { opacity: 0, scale: reduceMotion ? 1 : 1.06 },
+    initial: {
+      opacity: 0,
+      scale: reduceMotion ? 1 : 1.06,
+    },
     animate: {
       opacity: 1,
       scale: 1,
-      transition: { duration: reduceMotion ? 0 : 0.7, ease },
+      transition: {
+        duration: reduceMotion ? 0 : 0.7,
+        ease,
+      },
     },
     exit: {
       opacity: 0,
       scale: reduceMotion ? 1 : 0.98,
-      transition: { duration: reduceMotion ? 0 : 0.25 },
+      transition: {
+        duration: reduceMotion ? 0 : 0.25,
+      },
     },
   };
 
   const textVariants = {
-    initial: { opacity: 0, y: reduceMotion ? 0 : 20 },
+    initial: {
+      opacity: 0,
+      y: reduceMotion ? 0 : 20,
+    },
     animate: {
       opacity: 1,
       y: 0,
@@ -173,18 +201,28 @@ export default function PopularDestinations() {
     exit: {
       opacity: 0,
       y: reduceMotion ? 0 : -12,
-      transition: { duration: reduceMotion ? 0 : 0.2 },
+      transition: {
+        duration: reduceMotion ? 0 : 0.2,
+      },
     },
   };
 
   const itemVariants = {
-    initial: { opacity: 0, y: reduceMotion ? 0 : 16 },
+    initial: {
+      opacity: 0,
+      y: reduceMotion ? 0 : 16,
+    },
     animate: {
       opacity: 1,
       y: 0,
-      transition: { duration: reduceMotion ? 0 : 0.45, ease },
+      transition: {
+        duration: reduceMotion ? 0 : 0.45,
+        ease,
+      },
     },
   };
+
+  if (!destination) return null;
 
   return (
     <>
@@ -198,9 +236,16 @@ export default function PopularDestinations() {
           animate={
             reduceMotion
               ? undefined
-              : { scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }
+              : {
+                  scale: [1, 1.2, 1],
+                  opacity: [0.4, 0.7, 0.4],
+                }
           }
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
           className="pointer-events-none absolute -right-32 top-20 h-96 w-96 rounded-full bg-[#dce8d9]/60 blur-3xl"
         />
 
@@ -210,7 +255,10 @@ export default function PopularDestinations() {
             initial={reduceMotion ? false : { opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: reduceMotion ? 0 : 0.6, ease }}
+            transition={{
+              duration: reduceMotion ? 0 : 0.6,
+              ease,
+            }}
             className="mb-10 flex flex-col justify-between gap-6 md:mb-12 md:flex-row md:items-end"
           >
             <div className="max-w-2xl">
@@ -219,9 +267,13 @@ export default function PopularDestinations() {
                   initial={reduceMotion ? false : { width: 0 }}
                   whileInView={{ width: "2.25rem" }}
                   viewport={{ once: true }}
-                  transition={{ duration: reduceMotion ? 0 : 0.6, delay: 0.2 }}
+                  transition={{
+                    duration: reduceMotion ? 0 : 0.6,
+                    delay: 0.2,
+                  }}
                   className="h-px bg-[#d16b45]"
                 />
+
                 <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#b75b38]">
                   {data.tagline}
                 </p>
@@ -238,7 +290,7 @@ export default function PopularDestinations() {
             <div className="max-w-md">
               {data.description.map((paragraph, index) => (
                 <p
-                  key={index}
+                  key={`${index}-${paragraph}`}
                   className="mb-2 text-sm leading-7 text-[#686b73] sm:text-base"
                 >
                   {paragraph}
@@ -247,18 +299,22 @@ export default function PopularDestinations() {
             </div>
           </motion.div>
 
-          {/* Category filter */}
+          {/* Category filters: no All button */}
           <motion.div
             initial={reduceMotion ? false : { opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: reduceMotion ? 0 : 0.5, ease }}
+            transition={{
+              duration: reduceMotion ? 0 : 0.5,
+              ease,
+            }}
             className="mb-8 flex flex-col gap-4 rounded-2xl border border-[#e5e1d8] bg-white/70 p-5 sm:mb-10 sm:flex-row sm:items-center sm:justify-between sm:p-6"
           >
             <div>
               <p className="text-sm font-semibold text-[#252d4a]">
-                Find your next destination
+                {data.labels.selectorTitle || "Find your next destination"}
               </p>
+
               <p className="mt-1 text-sm text-[#777982]">
                 Explore places by travel style.
               </p>
@@ -293,24 +349,34 @@ export default function PopularDestinations() {
             </div>
           </motion.div>
 
+          {/* Filtered count */}
           <p className="mb-5 text-xs text-[#777982]">
             Showing {filteredDestinations.length}{" "}
-            {filteredDestinations.length === 1 ? "destination" : "destinations"}
+            {filteredDestinations.length === 1
+              ? "destination"
+              : "destinations"}
           </p>
 
           {/* Main destination layout */}
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
-            {/* LEFT: image slider */}
+            {/* Left: image slider */}
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: reduceMotion ? 0 : 0.7, ease }}
+              transition={{
+                duration: reduceMotion ? 0 : 0.7,
+                ease,
+              }}
               className="min-w-0"
             >
               <motion.div
                 whileHover={reduceMotion ? undefined : { y: -4 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25,
+                }}
                 className="relative rounded-[1.75rem] shadow-xl shadow-black/5"
               >
                 <div className="relative aspect-[4/4.5] overflow-hidden rounded-[1.75rem] bg-[#e7e4dc] sm:aspect-[4/3.8] lg:aspect-[0.91/1]">
@@ -328,7 +394,9 @@ export default function PopularDestinations() {
                           src={currentImage.src}
                           alt={currentImage.alt}
                           fill
-                          priority={activeDestination === 0 && activeImage === 0}
+                          priority={
+                            activeDestination === 0 && activeImage === 0
+                          }
                           sizes="(max-width: 1024px) 100vw, 50vw"
                           className="object-cover"
                         />
@@ -371,7 +439,7 @@ export default function PopularDestinations() {
                     </div>
                   )}
 
-                  {/* Counter */}
+                  {/* Image counter */}
                   <div className="absolute right-5 top-5 rounded-full bg-black/25 px-3 py-2 text-xs font-semibold text-white backdrop-blur-md sm:right-7 sm:top-7">
                     {String(activeImage + 1).padStart(2, "0")} /{" "}
                     {String(images.length).padStart(2, "0")}
@@ -387,14 +455,20 @@ export default function PopularDestinations() {
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={destination.id}
-                        initial={reduceMotion ? false : { opacity: 0, y: 15 }}
+                        initial={
+                          reduceMotion ? false : { opacity: 0, y: 15 }
+                        }
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: reduceMotion ? 0 : 0.4, ease }}
+                        transition={{
+                          duration: reduceMotion ? 0 : 0.4,
+                          ease,
+                        }}
                       >
                         <h3 className="font-serif text-4xl italic tracking-tight sm:text-5xl lg:text-6xl">
                           {destination.name}
                         </h3>
+
                         <p className="mt-2 text-sm text-white/80">
                           {destination.category}
                         </p>
@@ -404,7 +478,7 @@ export default function PopularDestinations() {
                 </div>
               </motion.div>
 
-              {/* Thumbnails */}
+              {/* Image thumbnails */}
               {images.length > 1 && (
                 <div className="mt-4 flex gap-3 overflow-x-auto pb-2">
                   {images.map((image, index) => (
@@ -435,11 +509,9 @@ export default function PopularDestinations() {
                   ))}
                 </div>
               )}
-
-          
             </motion.div>
 
-            {/* RIGHT: destination information */}
+            {/* Right: destination information */}
             <div className="flex min-w-0 flex-col justify-center lg:py-5">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -449,6 +521,7 @@ export default function PopularDestinations() {
                   animate="animate"
                   exit="exit"
                 >
+                  {/* Category and icon */}
                   <motion.div
                     variants={itemVariants}
                     className="mb-6 flex items-center gap-3"
@@ -468,12 +541,14 @@ export default function PopularDestinations() {
                           {data.labels.featured}
                         </p>
                       )}
+
                       <p className="mt-1 text-sm text-[#777982]">
                         {destination.category}
                       </p>
                     </div>
                   </motion.div>
 
+                  {/* Destination heading */}
                   <motion.h3
                     variants={itemVariants}
                     className="max-w-xl text-4xl font-medium leading-[1.08] tracking-[-0.05em] text-[#252d4a] sm:text-5xl lg:text-6xl"
@@ -494,11 +569,17 @@ export default function PopularDestinations() {
                     {destination.country}
                   </motion.div>
 
-                  <motion.div variants={itemVariants} className="mt-7 space-y-4">
+                  {/* Descriptions */}
+                  <motion.div
+                    variants={itemVariants}
+                    className="mt-7 space-y-4"
+                  >
                     {destination.description.map((paragraph, index) => (
                       <motion.div
                         key={`${destination.id}-description-${index}`}
-                        initial={reduceMotion ? false : { opacity: 0, x: -10 }}
+                        initial={
+                          reduceMotion ? false : { opacity: 0, x: -10 }
+                        }
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
                           duration: reduceMotion ? 0 : 0.35,
@@ -509,6 +590,7 @@ export default function PopularDestinations() {
                         <span className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#e5e9de] text-[#4f7352]">
                           <Check size={12} strokeWidth={2.5} />
                         </span>
+
                         <p className="text-sm leading-7 text-[#686b73] sm:text-base">
                           {paragraph}
                         </p>
@@ -516,6 +598,7 @@ export default function PopularDestinations() {
                     ))}
                   </motion.div>
 
+                  {/* Price and duration */}
                   <motion.div
                     variants={itemVariants}
                     className="mt-8 grid grid-cols-2 gap-4 border-y border-[#deddd5] py-6"
@@ -525,6 +608,7 @@ export default function PopularDestinations() {
                         <CalendarDays size={15} />
                         {data.labels.tripDuration}
                       </div>
+
                       <p className="text-lg font-semibold text-[#252d4a]">
                         {destination.duration}
                       </p>
@@ -534,11 +618,13 @@ export default function PopularDestinations() {
                       <p className="mb-2 text-xs font-semibold uppercase tracking-[0.13em] text-[#777982]">
                         {data.labels.startingPrice}
                       </p>
+
                       <p className="text-xl font-semibold tracking-tight text-[#252d4a] sm:text-2xl">
                         {formatPrice(
                           destination.startingPrice,
                           destination.currency
                         )}
+
                         <span className="ml-1 text-xs font-normal text-[#777982]">
                           {data.labels.priceSuffix}
                         </span>
@@ -546,9 +632,9 @@ export default function PopularDestinations() {
                     </div>
                   </motion.div>
 
-                  {/* CTA opens the enquiry popup */}
+                  {/* Enquiry CTA */}
                   <motion.div variants={itemVariants} className="mt-6">
-                    <PrimaryButton href={destination.href} onClick={openEnquiry}>
+                    <PrimaryButton href="" onClick={openEnquiry}>
                       {destination.cta}
                       <ArrowUpRight
                         size={17}
@@ -563,7 +649,7 @@ export default function PopularDestinations() {
         </div>
       </section>
 
-      {/* Rendered outside the section so overflow-hidden can't clip it */}
+      {/* Enquiry modal */}
       <EnquiryModal
         open={isEnquiryOpen}
         destinationName={destination.name}

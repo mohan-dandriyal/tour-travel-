@@ -199,37 +199,9 @@ function ServiceCard({
             }`}
           style={{ borderColor: COLORS.line }}
         >
-          <motion.div
-            variants={rise}
-            className="flex items-center justify-between"
-          >
-            <motion.span
-              whileHover={{ rotate: -6, scale: 1.08 }}
-              transition={{ duration: 0.3 }}
-              className="flex h-14 w-14 items-center justify-center rounded-full border transition-colors duration-300"
-              style={{
-                borderColor: COLORS.line,
-                backgroundColor: COLORS.tile,
-                color: COLORS.accent,
-              }}
-            >
-              <Icon className="h-6 w-6" aria-hidden="true" />
-            </motion.span>
-
-            <span
-              aria-hidden="true"
-              className={`${serif.className} text-6xl font-semibold leading-none text-transparent sm:text-7xl`}
-              style={{
-                WebkitTextStroke: `1.5px ${COLORS.accent}`,
-              }}
-            >
-              {service.number}
-            </span>
-          </motion.div>
-
           <motion.p
             variants={rise}
-            className={`${serif.className} mt-6 text-2xl italic`}
+            className={`${serif.className} text-2xl italic`}
             style={{ color: COLORS.accent }}
           >
             {service.subtitle}

@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 
 import data from "@/app/data/contact.json";
+import { PrimaryButton } from "./PrimaryButton";
 
 /* -------------------------------------------------------------------------- */
 /*  Fonts (next/font needs static options, so these stay in code)             */
@@ -363,7 +364,7 @@ export default function ContactSection() {
               {/* Image card */}
               <motion.div
                 variants={reveal}
-                className="group relative min-h-[330px] overflow-hidden rounded-3xl sm:min-h-[420px]"
+                className="group relative min-h-[300px] overflow-hidden rounded-3xl "
                 style={{ backgroundColor: theme.navy }}
               >
                 {content.image && !imageFailed ? (
@@ -393,13 +394,7 @@ export default function ContactSection() {
                   }}
                 />
 
-                {CardIcon && (
-                  <div className="absolute left-6 top-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/15 text-white backdrop-blur-md">
-                    <CardIcon className="h-6 w-6" aria-hidden="true" />
-                  </div>
-                )}
-
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                <div className="absolute bottom-0 left-0 right-0  p-6 sm:p-8">
                   {card?.chip && (
                     <span
                       className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-wider"
@@ -430,33 +425,8 @@ export default function ContactSection() {
                       )}
                     </h3>
                   )}
-
-                  {card?.footnote && (
-                    <div className="mt-5 flex items-center gap-2 text-sm text-white/80">
-                      <span
-                        aria-hidden="true"
-                        className="h-px w-9"
-                        style={{ backgroundColor: theme.terracotta }}
-                      />
-                      {card.footnote}
-                    </div>
-                  )}
                 </div>
 
-                <motion.div
-                  aria-hidden="true"
-                  animate={
-                    reduce ? undefined : { rotate: [0, 8, 0], y: [0, -6, 0] }
-                  }
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute right-6 top-6 hidden h-16 w-16 items-center justify-center rounded-full border border-white/40 text-white sm:flex"
-                >
-                  <ArrowDownRight className="h-7 w-7" />
-                </motion.div>
               </motion.div>
 
               {/* Contact details */}
@@ -530,40 +500,7 @@ export default function ContactSection() {
                 </motion.div>
               )}
 
-              {/* Response-time note */}
-              {responseNote && (responseNote.title || responseNote.text) && (
-                <motion.div
-                  variants={reveal}
-                  className="flex items-center gap-3 px-1"
-                >
-                  {NoteIcon && (
-                    <span
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full"
-                      style={{
-                        backgroundColor: theme.oliveSoft,
-                        color: theme.olive,
-                      }}
-                    >
-                      <NoteIcon className="h-5 w-5" aria-hidden="true" />
-                    </span>
-                  )}
-
-                  <p
-                    className="text-sm leading-6"
-                    style={{ color: theme.muted }}
-                  >
-                    {responseNote.title && (
-                      <span
-                        className="font-semibold"
-                        style={{ color: theme.navy }}
-                      >
-                        {responseNote.title}
-                      </span>
-                    )}{" "}
-                    {responseNote.text}
-                  </p>
-                </motion.div>
-              )}
+             
             </motion.div>
 
             {/* Right column: enquiry form */}
@@ -642,6 +579,7 @@ export default function ContactSection() {
                       </p>
                     )}
 
+                      
                     {success.resetLabel && (
                       <button
                         type="button"
@@ -692,17 +630,8 @@ export default function ContactSection() {
                         </p>
                       )}
 
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="group flex w-full items-center justify-center gap-3 rounded-full px-6 py-4 text-sm font-semibold transition hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
-                        style={{
-                          backgroundColor: theme.navy,
-                          color: theme.cream,
-                          outlineColor: theme.terracotta,
-                        }}
-                      >
-                        {isSubmitting && formConfig.submittingLabel
+                      <PrimaryButton href="" type="submit" disabled={isSubmitting} className="w-full">
+                         {isSubmitting && formConfig.submittingLabel
                           ? formConfig.submittingLabel
                           : formConfig.submitLabel}
 
@@ -717,7 +646,7 @@ export default function ContactSection() {
                             <SubmitIcon className="h-4 w-4" aria-hidden="true" />
                           </span>
                         )}
-                      </button>
+                      </PrimaryButton>
 
                       {formConfig.note && (
                         <p

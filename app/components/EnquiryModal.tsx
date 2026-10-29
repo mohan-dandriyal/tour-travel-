@@ -3,6 +3,7 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, X } from "lucide-react";
+import { PrimaryButton } from "./PrimaryButton";
 
 type EnquiryModalProps = {
   open: boolean;
@@ -110,14 +111,10 @@ function ModalContent({
 
         <h2
           id="enquiry-modal-title"
-          className="pr-10 text-3xl font-semibold text-[#252d4a] sm:text-4xl"
+          className="pr-10 text-3xl font-semibold text-[#252d4a]"
         >
           Let&apos;s make it happen.
         </h2>
-
-        <p className="mt-3 text-sm leading-6 text-[#686b73]">
-          Share your details and our travel team can help you plan your trip.
-        </p>
 
         <div className="mt-6 rounded-2xl border border-[#252d4a]/10 bg-white p-4">
           <p className="text-xs uppercase tracking-wider text-[#686b73]">
@@ -202,14 +199,11 @@ function ModalContent({
             </p>
           )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="flex w-full items-center justify-center gap-3 rounded-full bg-[#252d4a] px-6 py-4 text-sm font-semibold text-white transition hover:bg-[#b75b38] disabled:cursor-not-allowed disabled:opacity-60"
-          >
+          <PrimaryButton type="submit" href="" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Send enquiry"}
             {!isSubmitting && <ArrowRight size={18} />}
-          </button>
+          </PrimaryButton>
+
         </form>
       </motion.div>
     </motion.div>

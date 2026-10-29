@@ -1,4 +1,3 @@
-
 {
   "tagline": "Discover Incredible India",
   "heading": {
@@ -51,7 +50,7 @@
       "duration": "3–5 Days",
       "featured": true,
       "href": "#tour-packages",
-      "cta": "Explore Destination"
+      "cta": "Enquiry Now"
     },
     {
       "id": "goa",
@@ -78,8 +77,8 @@
       "currency": "INR",
       "duration": "3–5 Days",
       "featured": true,
-      "href": "#tour-packages",
-      "cta": "Explore Destination"
+      "href": "",
+      "cta": "Enquiry Now"
     },
     {
       "id": "jaipur",
@@ -107,7 +106,7 @@
       "duration": "2–4 Days",
       "featured": true,
       "href": "#tour-packages",
-      "cta": "Explore Destination"
+      "cta": "Enquiry Now"
     },
     {
       "id": "kerala",
@@ -135,7 +134,7 @@
       "duration": "4–7 Days",
       "featured": true,
       "href": "#tour-packages",
-      "cta": "Explore Destination"
+      "cta": "Enquiry Now"
     },
     {
       "id": "almora",
@@ -167,7 +166,7 @@
       "duration": "2–4 Days",
       "featured": true,
       "href": "#tour-packages",
-      "cta": "Explore Destination"
+      "cta": "Enquiry Now"
     }
   ]
 }
