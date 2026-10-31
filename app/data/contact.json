@@ -38,8 +38,8 @@
         "id": "email",
         "icon": "mail",
         "label": "Email us",
-        "value": "hello@yourtravelcompany.com",
-        "href": "mailto:hello@yourtravelcompany.com",
+        "value": "info@xyz.com",
+        "href": "mailto:info@xyz.com",
         "external": false,
         "description": "We usually reply within one business day."
       },
@@ -47,7 +47,7 @@
         "id": "phone",
         "icon": "phone",
         "label": "Call us",
-        "value": "+1 213 555 1234",
+        "value": "+1 000000000",
         "href": "tel:+1 000000000",
         "external": false,
         "description": "Talk to our travel planning team."
@@ -96,7 +96,7 @@
           "name": "phone",
           "label": "Phone number (optional)",
           "type": "tel",
-          "placeholder": "+1 213 555 1234",
+          "placeholder": "+1 000000000",
           "required": false,
           "width": "full",
           "autoComplete": "tel"

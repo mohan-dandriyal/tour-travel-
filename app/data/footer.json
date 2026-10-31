@@ -46,7 +46,7 @@
           "id": "phone",
           "label": "Call us",
           "value": "+1 000000000",
-          "href": "tel:+1 213 555 1234",
+          "href": "tel:+1 000000000",
           "icon": "phone"
         },
         {
