@@ -25,7 +25,7 @@
       "location": "Madrid, Spain",
       "trip": "Emerald Bay",
       "rating": 5,
-      "image": { "src": "/images/testimonial-1.jpg", "alt": "Portrait of Sofia Alvarez" }
+      "image": { "src": "/profile-2.jpg", "alt": "Portrait of Sofia Alvarez" }
     },
     {
       "id": "rahul",
@@ -34,7 +34,7 @@
       "location": "New Delhi, India",
       "trip": "Mountain trek",
       "rating": 5,
-      "image": { "src": "/images/testimonial-2.jpg", "alt": "Portrait of Rahul Sharma" }
+      "image": { "src": "/profile-1.jpg", "alt": "Portrait of Rahul Sharma" }
     },
     {
       "id": "emma",
@@ -43,7 +43,7 @@
       "location": "Manchester, UK",
       "trip": "Coastal roads",
       "rating": 5,
-      "image": { "src": "/images/testimonial-3.jpg", "alt": "Portrait of Emma Collins" }
+      "image": { "src": "/profile-3.jpg", "alt": "Portrait of Emma Collins" }
     },
     {
       "id": "kenji",
@@ -52,7 +52,7 @@
       "location": "Osaka, Japan",
       "trip": "Island headland",
       "rating": 5,
-      "image": { "src": "/images/testimonial-4.jpg", "alt": "Portrait of Kenji Tanaka" }
+      "image": { "src": "/profile-1.jpg", "alt": "Portrait of Kenji Tanaka" }
     },
     {
       "id": "amira",
@@ -61,7 +61,7 @@
       "location": "Dubai, UAE",
       "trip": "Family holiday",
       "rating": 5,
-      "image": { "src": "/images/testimonial-5.jpg", "alt": "Portrait of Amira Hassan" }
+      "image": { "src": "/profile-3.jpg", "alt": "Portrait of Amira Hassan" }
     },
     {
       "id": "lucas",
@@ -70,7 +70,7 @@
       "location": "Berlin, Germany",
       "trip": "Group tour",
       "rating": 5,
-      "image": { "src": "/images/testimonial-6.jpg", "alt": "Portrait of Lucas Meyer" }
+      "image": { "src": "/profile-4.jpg", "alt": "Portrait of Lucas Meyer" }
     }
   ]
 }
