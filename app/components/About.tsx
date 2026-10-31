@@ -237,7 +237,7 @@ export default function About() {
     <MotionConfig reducedMotion="user">
       <section
         id="about"
-        className={`${sans.className} relative overflow-hidden pt-12 pb-12 sm:pb-18 lg:pb-16`}
+        className={`${sans.className} relative overflow-hidden sm:pt-8 pt-12 pb-12 sm:pb-18 lg:pb-16`}
         style={{
           backgroundColor: COLORS.background,
           color: COLORS.navy,
