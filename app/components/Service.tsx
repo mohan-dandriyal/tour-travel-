@@ -266,27 +266,7 @@ function ServiceCard({
             Icon={Icon}
             scale={imageScale}
           />
-
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-[#252D4A]/85 via-[#252D4A]/10 to-transparent"
-          />
-
-          <ul className="absolute inset-x-5 bottom-5 space-y-2 sm:inset-x-7 sm:bottom-7">
-            {service.benefits.map((benefit: string) => (
-              <li
-                key={benefit}
-                className="flex w-fit max-w-full items-center gap-2.5 rounded-full border border-white/30 bg-[#252D4A]/35 px-4 py-2 text-sm font-medium text-white backdrop-blur-md"
-              >
-                <span
-                  aria-hidden="true"
-                  className="h-2 w-2 shrink-0 rounded-full"
-                  style={{ backgroundColor: COLORS.accent }}
-                />
-                {benefit}
-              </li>
-            ))}
-          </ul>
+        
         </div>
       </motion.article>
     </div>
@@ -324,7 +304,7 @@ export default function Services() {
       
       <section
         id="service"
-        className={`${sans.className} bg-white relative scroll-mt-24 overflow-x-clip py-12 sm:py-18 lg:py-20`}
+        className={`${sans.className} bg-white relative scroll-mt-24 overflow-x-clip pt-12 sm:pt-18 lg:pt-18 pb-12`}
       >
         {/* Decorative compass watermark */}
         <motion.div
@@ -422,7 +402,7 @@ export default function Services() {
           </motion.div>
 
           {/* Sticky service cards */}
-          <div ref={containerRef} className="mt-14 lg:mt-20">
+          <div ref={containerRef} className="mt-14 lg:mt-10">
             {services.map((service: Service, index: number) => (
               <ServiceCard
                 key={service.id}

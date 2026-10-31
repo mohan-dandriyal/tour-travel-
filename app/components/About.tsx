@@ -237,7 +237,7 @@ export default function About() {
     <MotionConfig reducedMotion="user">
       <section
         id="about"
-        className={`${sans.className} relative overflow-hidden py-12 sm:py-18 lg:py-20`}
+        className={`${sans.className} relative overflow-hidden pt-12 pb-12 sm:pb-18 lg:pb-16`}
         style={{
           backgroundColor: COLORS.background,
           color: COLORS.navy,
@@ -256,7 +256,7 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="mb-14 lg:mb-24"
+            className="mb-14 lg:mb-14"
           >
             <motion.div
               variants={fadeUp}
@@ -378,37 +378,6 @@ export default function About() {
                 ))}
               </motion.ul>
 
-              {/* Contact and CTA */}
-              <motion.div
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 sm:mt-9"
-              >
-                <Link
-                  href={content.contact.href}
-                  className="group inline-flex items-center gap-3 text-sm font-semibold transition-opacity hover:opacity-70"
-                  style={{ color: COLORS.navy }}
-                >
-                  <span
-                    className="flex h-10 w-10 items-center justify-center rounded-full"
-                    style={{
-                      backgroundColor: COLORS.tile,
-                      color: COLORS.accent,
-                    }}
-                  >
-                    <Headset size={19} aria-hidden="true" />
-                  </span>
-
-                  <span>
-                    <span className="block text-xs font-normal" style={{ color: COLORS.muted }}>
-                      {content.contact.label}
-                    </span>
-                    <span className="mt-0.5 block">{content.contact.phone}</span>
-                  </span>
-                </Link>
-              </motion.div>
             </div>
           </div>
 

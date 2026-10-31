@@ -228,7 +228,7 @@ export default function PopularDestinations() {
     <>
       <section
         id="destinations"
-        className="relative overflow-hidden bg-[#f8f7f3] py-14 sm:py-[4.5rem] lg:py-24"
+        className="relative overflow-hidden bg-[#f8f7f3] py-14 sm:py-[4.5rem] lg:py-18"
       >
         {/* Decorative background */}
         <motion.div
@@ -348,14 +348,6 @@ export default function PopularDestinations() {
               })}
             </div>
           </motion.div>
-
-          {/* Filtered count */}
-          <p className="mb-5 text-xs text-[#777982]">
-            Showing {filteredDestinations.length}{" "}
-            {filteredDestinations.length === 1
-              ? "destination"
-              : "destinations"}
-          </p>
 
           {/* Main destination layout */}
           <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">

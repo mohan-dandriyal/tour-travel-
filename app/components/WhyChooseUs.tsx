@@ -88,7 +88,7 @@ export default function WhyChooseUs() {
   return (
     <section
       id={data.sectionId}
-      className="relative overflow-hidden py-12 sm:py-[4.5rem] lg:py-20"
+      className="relative overflow-hidden py-12 sm:py-[4.5rem] lg:py-18"
     >
       {/* Background decoration */}
       <div
@@ -103,7 +103,7 @@ export default function WhyChooseUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="mb-14 flex flex-col gap-7 lg:mb-20 lg:flex-row lg:items-end lg:justify-between"
+          className="mb-14 flex flex-col gap-7 lg:mb-14 lg:flex-row lg:items-end lg:justify-between"
         >
           <motion.div variants={fadeUp} className="max-w-3xl">
             <div className="mb-6 flex items-center gap-3">
@@ -289,7 +289,7 @@ export default function WhyChooseUs() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="mt-20 grid grid-cols-1 gap-5 border-t border-[#e8e6df] pt-8 text-center sm:grid-cols-3 sm:gap-8 lg:mt-24 lg:pt-10"
+          className="mt-18 grid grid-cols-1 gap-5 border-t border-[#e8e6df] pt-8 text-center sm:grid-cols-3 sm:gap-8 lg:mt-18 lg:pt-10"
         >
           {data.stats.map((stat) => (
             <motion.div
