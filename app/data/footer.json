@@ -45,14 +45,14 @@
         {
           "id": "phone",
           "label": "Call us",
-          "value": "+91 98765 43210",
-          "href": "tel:+919876543210",
+          "value": "+12135551234",
+          "href": "tel:+1 213 555 1234",
           "icon": "phone"
         },
         {
           "id": "location",
           "label": "Our location",
-          "value": "Noida, Uttar Pradesh, India",
+          "value": "2309 Mayflower Dr, Lynchburg, VA 24501, United States",
           "href": "https://maps.google.com/?q=Noida,Uttar+Pradesh,India",
           "icon": "map-pin"
         }
