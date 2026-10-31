@@ -626,7 +626,7 @@ export default function PopularDestinations() {
 
                   {/* Enquiry CTA */}
                   <motion.div variants={itemVariants} className="mt-6">
-                    <PrimaryLinkButton href={data.cta.href}  disabled={false}>
+                    <PrimaryLinkButton href={data.cta.href} >
                       {data.cta.label}
                       <ArrowUpRight
                         size={17}

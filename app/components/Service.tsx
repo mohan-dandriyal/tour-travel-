@@ -256,7 +256,7 @@ function ServiceCard({
           </motion.ul>
 
           <div className="mt-5">
-            <PrimaryLinkButton href={service.cta.href || ""} className="" disabled={false}>
+            <PrimaryLinkButton href={service.cta.href || ""} className="">
                 {service.cta.label}
             </PrimaryLinkButton>
           </div>

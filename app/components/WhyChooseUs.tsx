@@ -282,7 +282,7 @@ export default function WhyChooseUs() {
               })}
 
               <div className="mt-10">
-                <PrimaryLinkButton href={data.cta?.href || ""} disabled={false}>
+                <PrimaryLinkButton href={data.cta?.href || ""}>
                   {data.cta?.label || ""}
                   <ArrowUpRight
                     size={17}
