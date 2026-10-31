@@ -38,21 +38,21 @@
         {
           "id": "email",
           "label": "Email us",
-          "value": "hello@wanderlytravel.com",
-          "href": "mailto:hello@wanderlytravel.com",
+          "value": "info@xyz.com",
+          "href": "mailto:info@xyz.com",
           "icon": "mail"
         },
         {
           "id": "phone",
           "label": "Call us",
-          "value": "+12135551234",
+          "value": "+1 000000000",
           "href": "tel:+1 213 555 1234",
           "icon": "phone"
         },
         {
           "id": "location",
           "label": "Our location",
-          "value": "2309 Mayflower Dr, Lynchburg, VA 24501, United States",
+          "value": "3170 Rosewood Lane Unit 200 , Beverly Hills, CA 90210",
           "href": "https://maps.google.com/?q=Noida,Uttar+Pradesh,India",
           "icon": "map-pin"
         }
@@ -66,8 +66,8 @@
     "bottom": {
       "year": "2026",
       "copyrightPrefix": "©",
-      "copyrightSuffix": "All rights reserved.",
-      "tagline": "Made for the journeys that matter.",
+      "copyrightSuffix": "All Rights Reserved. Powered by Lestow.",
+      "tagline": "",
       "backToTopLabel": "Back to top"
     },
     "accessibility": {

@@ -48,7 +48,7 @@
         "icon": "phone",
         "label": "Call us",
         "value": "+1 213 555 1234",
-        "href": "tel:+12135551234",
+        "href": "tel:+1 000000000",
         "external": false,
         "description": "Talk to our travel planning team."
       },
@@ -56,7 +56,7 @@
         "id": "location",
         "icon": "map-pin",
         "label": "Visit us",
-        "value": "2309 Mayflower Dr, Lynchburg, VA 24501, United States",
+        "value": "3170 Rosewood Lane Unit 200 , Beverly Hills, CA 90210",
         "href": "https://maps.google.com/?q=Noida,Uttar+Pradesh,India",
         "external": true,
         "description": "Let's talk about your next adventure."
