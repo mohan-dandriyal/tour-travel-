@@ -45,8 +45,8 @@
           "More time to enjoy meaningful experiences"
         ],
         "cta": {
-          "label": "Plan Your Trip",
-          "href": "/contact?service=customized-trip-planning"
+          "label": "Explore Tour Packages",
+          "href": "#destinations"
         }
       },
       {
@@ -73,7 +73,7 @@
         ],
         "cta": {
           "label": "Explore Adventures",
-          "href": "/contact?service=adventure-nature-trips"
+          "href": "#contact"
         }
       },
       {
@@ -100,7 +100,7 @@
         ],
         "cta": {
           "label": "Get Travel Assistance",
-          "href": "/contact?service=travel-assistance"
+          "href": "#contact"
         }
       },
       {
@@ -127,7 +127,7 @@
         ],
         "cta": {
           "label": "Explore Tour Packages",
-          "href": "/tours"
+          "href": "#contact"
         }
       }
     ]

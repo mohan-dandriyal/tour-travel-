@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 
 import data from "@/app/data/service.json";
+import { PrimaryButton, PrimaryLinkButton } from "./PrimaryButton";
 
 /* Typography matching the About section */
 const sans = DM_Sans({
@@ -253,6 +254,12 @@ function ServiceCard({
               </li>
             ))}
           </motion.ul>
+
+          <div className="mt-5">
+            <PrimaryLinkButton href={service.cta.href || ""} className="" disabled={false}>
+                {service.cta.label}
+            </PrimaryLinkButton>
+          </div>
         </motion.div>
 
         {/* Service photo and benefits */}

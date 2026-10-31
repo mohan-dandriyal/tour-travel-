@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 
 import destinationsData from "@/app/data/popularDestinations.json";
-import { PrimaryButton } from "./PrimaryButton";
+import {  PrimaryLinkButton } from "./PrimaryButton";
 import EnquiryModal from "./EnquiryModal";
 
 type DestinationImage = {
@@ -62,7 +62,7 @@ type PopularDestinationsData = {
     destinationCounter: string;
     selectorTitle: string;
   };
-  button: {
+  cta: {
     label: string;
     href: string;
   };
@@ -626,13 +626,13 @@ export default function PopularDestinations() {
 
                   {/* Enquiry CTA */}
                   <motion.div variants={itemVariants} className="mt-6">
-                    <PrimaryButton href="" onClick={openEnquiry} disabled={false}>
-                      {destination.cta}
+                    <PrimaryLinkButton href={data.cta.href}  disabled={false}>
+                      {data.cta.label}
                       <ArrowUpRight
                         size={17}
                         className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
                       />
-                    </PrimaryButton>
+                    </PrimaryLinkButton>
                   </motion.div>
                 </motion.div>
               </AnimatePresence>

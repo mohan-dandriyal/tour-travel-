@@ -332,7 +332,7 @@ export default function Header() {
                       onMouseEnter={() => setHovered(n.href)}
                       onFocus={() => setHovered(n.href)}
                       onBlur={() => setHovered(null)}
-                      className={`relative isolate block whitespace-nowrap rounded-full px-3 py-2 text-[14px] font-medium tracking-[0.01em] transition-colors duration-300 ${FOCUS_RING} xl:px-4 ${active
+                      className={`relative isolate block whitespace-nowrap rounded-full px-3 py-2 text-[14px] font-[600] tracking-[0.01em] transition-colors duration-300 ${FOCUS_RING} xl:px-4 ${active
                           ? "text-[#A64A2B]"
                           : "text-neutral-700 hover:text-[#A64A2B]"
                         }`}

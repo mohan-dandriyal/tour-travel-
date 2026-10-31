@@ -19,9 +19,9 @@
     "destinationCounter": "Destination",
     "selectorTitle": "Choose your destination"
   },
-  "button": {
-    "label": "Explore All Destinations",
-    "href": "#tour-packages"
+  "cta": {
+    "label": "Enquiry Now",
+    "href": "#contact"
   },
   "destinations": [
     {
@@ -49,7 +49,7 @@
       "currency": "INR",
       "duration": "3–5 Days",
       "featured": true,
-      "href": "#tour-packages",
+      "href": "#contact",
       "cta": "Enquiry Now"
     },
     {

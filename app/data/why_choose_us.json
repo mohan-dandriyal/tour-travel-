@@ -26,6 +26,10 @@
     "eyebrow": "The difference is in the details",
     "heading": "More than a trip. A better way to explore."
   },
+  "cta" : {
+    "label" : "Contact Now",
+    "href" : "#contact"
+  },
   "features": [
     {
       "id": "personalized",

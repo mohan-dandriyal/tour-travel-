@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
+  ArrowUpRight,
   ChevronDown,
   Compass,
   Headset,
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 
 import whyChooseUsData from "@/app/data/why_choose_us.json";
+import { PrimaryLinkButton } from "./PrimaryButton";
 
 type Feature = {
   id: string;
@@ -126,6 +128,8 @@ export default function WhyChooseUs() {
               {data.description}
             </p>
           </motion.div>
+
+
         </motion.div>
 
         {/* Image and FAQ */}
@@ -211,11 +215,10 @@ export default function WhyChooseUs() {
                   <motion.div
                     key={feature.id}
                     variants={fadeUp}
-                    className={`overflow-hidden rounded-2xl border bg-white transition-all duration-300 ${
-                      isOpen
-                        ? "border-[#b75b38]/40 shadow-[0_18px_50px_rgba(37,45,74,0.08)]"
-                        : "border-[#252d4a]/[0.08] hover:border-[#b75b38]/30"
-                    }`}
+                    className={`overflow-hidden rounded-2xl border bg-white transition-all duration-300 ${isOpen
+                      ? "border-[#b75b38]/40 shadow-[0_18px_50px_rgba(37,45,74,0.08)]"
+                      : "border-[#252d4a]/[0.08] hover:border-[#b75b38]/30"
+                      }`}
                   >
                     <h4>
                       <button
@@ -227,11 +230,10 @@ export default function WhyChooseUs() {
                         className="flex w-full items-center gap-4 p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#b75b38] sm:p-5"
                       >
                         <span
-                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-colors duration-300 ${
-                            isOpen
-                              ? "bg-[#252d4a] text-white"
-                              : "bg-[#f4eee7] text-[#b75b38]"
-                          }`}
+                          className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl transition-colors duration-300 ${isOpen
+                            ? "bg-[#252d4a] text-white"
+                            : "bg-[#f4eee7] text-[#b75b38]"
+                            }`}
                         >
                           {feature.Icon && (
                             <feature.Icon size={22} strokeWidth={1.6} />
@@ -247,9 +249,8 @@ export default function WhyChooseUs() {
                         <ChevronDown
                           size={20}
                           aria-hidden="true"
-                          className={`shrink-0 text-[#252d4a] transition-transform duration-300 ${
-                            isOpen ? "rotate-180 text-[#b75b38]" : ""
-                          }`}
+                          className={`shrink-0 text-[#252d4a] transition-transform duration-300 ${isOpen ? "rotate-180 text-[#b75b38]" : ""
+                            }`}
                         />
                       </button>
                     </h4>
@@ -279,6 +280,16 @@ export default function WhyChooseUs() {
                   </motion.div>
                 );
               })}
+
+              <div className="mt-10">
+                <PrimaryLinkButton href={data.cta?.href || ""} disabled={false}>
+                  {data.cta?.label || ""}
+                  <ArrowUpRight
+                    size={17}
+                    className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </PrimaryLinkButton>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -303,6 +314,8 @@ export default function WhyChooseUs() {
               <p className="text-sm text-[#777982]">{stat.label}</p>
             </motion.div>
           ))}
+
+
         </motion.div>
       </div>
     </section>

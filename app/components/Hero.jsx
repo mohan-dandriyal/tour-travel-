@@ -13,6 +13,8 @@ import {
   useTransform,
 } from "framer-motion";
 import data from "@/app/data/hero.json";
+import { OutlineLinkButton, PrimaryLinkButton } from "./PrimaryButton";
+import { ArrowUpRight } from "lucide-react";
 
 const script = Cormorant_Garamond({
   subsets: ["latin"],
@@ -30,7 +32,7 @@ const body = DM_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const { eyebrow, heading, description,  slides } = data;
+const { eyebrow, heading, description, slides } = data;
 
 const EASE = [0.22, 1, 0.36, 1];
 const AUTOPLAY_MS = 6000;
@@ -362,6 +364,28 @@ export default function Hero() {
               >
                 {description}
               </motion.p>
+
+              <div className="mt-10 flex flex-wrap gap-5">
+                <PrimaryLinkButton className="px-8" href={data.cta[0].href || ""}>
+                  {data.cta[0].label}
+
+                  <ArrowUpRight
+                    size={17}
+                    className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </PrimaryLinkButton>
+
+
+
+                <OutlineLinkButton className="px-8" href={data.cta[1].href || ""}>
+                  {data.cta[1].label}
+
+                   <ArrowUpRight
+                    size={17}
+                    className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </OutlineLinkButton>
+              </div>
             </motion.div>
 
             {/* Right destination thumbnail cards */}
@@ -400,7 +424,7 @@ export default function Hero() {
                         stiffness: 300,
                         damping: 22,
                       }}
-                      className="relative block aspect-[4/3] w-32 overflow-hidden rounded-xl border-2 transition-[border-color,opacity,box-shadow] duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:w-44"
+                      className="relative block aspect-[4/3] w-26 overflow-hidden rounded-xl border-2 transition-[border-color,opacity,box-shadow] duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white lg:w-44"
                       style={{
                         borderColor: isActive
                           ? COLORS.cream
@@ -411,7 +435,7 @@ export default function Hero() {
                           : "none",
                       }}
                     >
-                      <Photo src={s.image} alt="" sizes="176px" />
+                      <Photo src={s.image} alt="" sizes="160px" />
                       <span
                         aria-hidden="true"
                         className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"

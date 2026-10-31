@@ -44,10 +44,6 @@ export default function Home() {
         <Footer />
       </div>
 
-      {/* <div>
-      <LatestTours />
-    </div> */}
-
     </div>
   );
 }

@@ -9,8 +9,9 @@ import {
   motion,
   type Variants,
 } from "framer-motion";
-import {  MapPin, Quote, Star } from "lucide-react";
+import { ArrowUpRight, MapPin, Quote, Star } from "lucide-react";
 import data from "@/app/data/testimonials.json";
+import { PrimaryLinkButton } from "./PrimaryButton";
 
 const script = Cormorant_Garamond({
   subsets: ["latin"],
@@ -332,6 +333,16 @@ export default function Testimonials() {
               >
                 {description}
               </motion.p>
+
+              <div className="mt-10">
+                <PrimaryLinkButton href={data.cta?.href || ""} disabled={false}>
+                  {data.cta?.label || ""}
+                  <ArrowUpRight
+                    size={17}
+                    className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                  />
+                </PrimaryLinkButton>
+              </div>
             </motion.div>
 
             {/* Right: postcard wall */}

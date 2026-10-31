@@ -5,10 +5,17 @@
     "bold": "To your vacation"
   },
   "description": "Escape the everyday and discover turquoise bays, green mountains and quiet hidden beaches. Tell us where you want to go and we will plan the trip, so all that is left for you is the view.",
-  "cta": {
+  "cta": [
+    {
+    "label": "Contact Now",
+    "href": "#contact"
+  },
+
+  {
     "label": "Find out more",
     "href": "#destinations"
-  },
+  }
+  ],
   "stats": [
     {
       "value": "120+",
